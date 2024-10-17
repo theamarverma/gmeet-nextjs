@@ -57,8 +57,8 @@ export default function Home() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    if (!formData.get("timetable")) {
-      setTimetableError("Please select a time slot");
+    if (!formData.get("timetable") || !formData.get('selectedCalendarDate')) {
+      setTimetableError("Please select a date and time slot");
     } else {
       formMeetAction(formData);
       setShowMessage(true);
