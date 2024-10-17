@@ -171,7 +171,7 @@ export const createMeeting = async (
 
   if (meeting?.data) {
     if (meeting.status === 200) {
-      message = "Event Inserted successfully";
+      message = "Meeting has been added to my calendar";
     } else {
       console.log("Failed to insert event");
       message = "Failed to insert event";

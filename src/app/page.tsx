@@ -1,26 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
 import { createMeeting, getAvailableSlots } from "@/actions/meet-action";
 import { DayPicker } from "react-day-picker";
 import { format } from "date-fns"
 import "react-day-picker/style.css";
-
-function SubmitButton () {
-  const { pending } = useFormStatus()
-
-  return (
-    <button
-      type="submit"
-      aria-label="Submit"
-      disabled={pending}
-      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full md:w-1/4 px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:opacity-50"
-    >
-      {pending ? 'Submitting...' : 'Submit'}
-    </button>
-  )
-}
 
 export default function Home() {
   const [state, formMeetAction] = useFormState(createMeeting, { message: "" });
@@ -28,9 +13,24 @@ export default function Home() {
   const [slots, setAvailableSlots] = useState<string[]>();
   const [timetableError, setTimetableError] = useState<string>("");
   const [isTimeTableLoading, setIsTimeTableLoading] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+
+  /*
+  useEffect(() => {
+    if (state.message) {
+      setShowMessage(true);
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [state.message]);
+  */
 
   const handleDayPickerSelect = async (date: Date | undefined) => {
     setTimetableError("")
+    setShowMessage(false);
     if (!date) {
       setSelectedDate(undefined);
       setAvailableSlots([]);
@@ -61,6 +61,7 @@ export default function Home() {
       setTimetableError("Please select a time slot");
     } else {
       formMeetAction(formData);
+      setShowMessage(true);
       setTimetableError("");
       setSelectedDate(undefined);
       setAvailableSlots([]);
@@ -86,14 +87,13 @@ export default function Home() {
       <h2 className="text-xl text-gray-900 dark:text-white font-bold mb-2">
         Let&apos;s Talk
       </h2>
-      {state.message && (
-        <p className="text-red-500 text-sm mt-2">{state.message}</p>
+      {showMessage && state.message && (
+          <p className="text-green-500 text-md mt-2">{state.message}</p>
       )}
 
       <div className="flex flex-col sm:flex-row gap-4">
         <DayPicker
           mode="single"
-          showWeekNumber
           required
           selected={selected}
           onSelect={handleDayPickerSelect}
@@ -195,7 +195,13 @@ export default function Home() {
         ></textarea>
       </div>
       <div className="flex flex-col gap-2 items-end">
-        <SubmitButton />
+        <button
+          type="submit"
+          aria-label="Submit"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full md:w-1/4 px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:opacity-50"
+        >
+          Submit
+        </button>
         <button
           type="button"
           aria-label="Reset"
