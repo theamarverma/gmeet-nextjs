@@ -30,7 +30,6 @@ const initGoogleCalendar = async () => {
 
     const calendar = google.calendar({ version: "v3", auth });
 
-    // You can now use the calendar object to interact with Google Calendar API
     console.log("Google Calendar API initialized:");
     return calendar;
   } catch (error) {
@@ -138,10 +137,10 @@ export const createMeeting = async (
       timeZone: "UTC",
     },
     /*
-        attendees: [
-            { email: "frederic.henri+test@gmail.com" },
-        ],
-        */
+    attendees: [
+        { email: "frederic.henri+test@gmail.com" },
+    ],
+    */
     //sendUpdates: 'all', // Sends email invite to attendees
     conferenceData: {
       createRequest: {
