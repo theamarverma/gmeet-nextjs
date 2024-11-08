@@ -17,11 +17,11 @@ The meeting will be created and added in your Google Calendar
 
 # Technical Corner
 
-The development of the page is explained in a [medium article](https://medium.com/@frederic.henri/nextjs-application-to-manage-your-google-calendar-and-your-invites-28dce1707b24)
+The development of the page is explained in this [medium article](https://medium.com/@frederic.henri/nextjs-application-to-manage-your-google-calendar-and-your-invites-28dce1707b24)
 
 ## Stack
 
-- The app is built with [nextJS](https://nextjs.org/)
+- The app is built with the [nextJS](https://nextjs.org/) framework
 - NextJS App Router and Form Action to integrate with the back end
 - The backend is your Google Calendar, you need to configure a Google Service Account and your Google Calendar (see the [article](https://medium.com/@frederic.henri/nextjs-application-to-manage-your-google-calendar-and-your-invites-28dce1707b24) for a step by step guide
 - The page design is mainly inspired from [Flowbite inline timepicker component](https://flowbite.com/docs/forms/timepicker/#inline-timepicker-buttons)
@@ -31,4 +31,7 @@ The development of the page is explained in a [medium article](https://medium.co
 ## Deployment
 
 As usual, the easiest way to deploy Next.js app is to use the the [Vercel Platform](https://vercel.com/new). Make sure to add the required environment variables to connect with your Google Calendar once deployed.
+
+- vercel app: https://gmeet-nextjs.vercel.app
+- CNAME record from the main site (hosted at cloudflare): https://gmeet.cloud06.io
 
