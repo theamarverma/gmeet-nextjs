@@ -4,7 +4,7 @@
 ![image](https://github.com/user-attachments/assets/60554b35-51a1-473b-941d-a874b7b5ba22)
 
 # Features
-You define which time of the day you have the calendar open (lets say we have a 2 hours time slot each day for 20 min meeting between 8:00 to 10:00 AM CET)
+You define which time of the day you have the calendar open (lets say we have a 2 hours time slot each day for 20 min meeting between 8:00 to 10:00 AM IST)
 
 User do not require to be authenticated
 
